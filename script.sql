@@ -14,12 +14,12 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
-
 ---
 --- drop tables
 ---
 
-
+DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS job_categories;
 DROP TABLE IF EXISTS job_seekers;
 DROP TABLE IF EXISTS companies;
 DROP TABLE IF EXISTS email_verifications;
@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE public.roles
 (
     id        integer           NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    role_name character varying NOT NULL UNIQUE ,
+    role_name character varying NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE public.users
 (
     id        integer               NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
     role_id   integer               NOT NULL,
-    email     character varying     NOT NULL UNIQUE ,
+    email     character varying     NOT NULL UNIQUE,
     pass      character varying(60) NOT NULL,
     is_active boolean               NOT NULL,
     PRIMARY KEY (id)
@@ -52,7 +52,7 @@ CREATE TABLE public.job_seekers
 (
     job_seeker_id   integer               NOT NULL,
     email_verify_id integer               NOT NULL,
-    national_id     character varying(11) NOT NULL UNIQUE ,
+    national_id     character varying(11) NOT NULL UNIQUE,
     gender          "char",
     PRIMARY KEY (job_seeker_id)
 );
@@ -70,7 +70,7 @@ CREATE TABLE public.companies
     company_id      integer               NOT NULL,
     staff_verify_id integer               NOT NULL,
     email_verify_id integer               NOT NULL,
-    company_name    character varying(60) NOT NULL UNIQUE ,
+    company_name    character varying(60) NOT NULL UNIQUE,
     phone           character varying(20) NOT NULL,
     website         character varying(60) NOT NULL,
     PRIMARY KEY (company_id)
@@ -105,70 +105,93 @@ CREATE TABLE public.verifications
     PRIMARY KEY (id)
 );
 
+CREATE TABLE public.jobs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    job_category_id integer NOT NULL,
+    job_name character varying(20) NOT NULL UNIQUE,
+    job_description character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.job_categories
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    title character varying(20) NOT NULL UNIQUE ,
+    description character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 ALTER TABLE public.persons
     ADD FOREIGN KEY (person_id)
         REFERENCES public.users (id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.users
     ADD FOREIGN KEY (role_id)
         REFERENCES public.roles (id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.companies
     ADD FOREIGN KEY (company_id)
         REFERENCES public.users (id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.job_seekers
     ADD FOREIGN KEY (job_seeker_id)
         REFERENCES public.persons (person_id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.staff
     ADD FOREIGN KEY (staff_id)
         REFERENCES public.persons (person_id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.email_verifications
     ADD FOREIGN KEY (email_verify_id)
         REFERENCES public.verifications (id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.staff_verifications
     ADD FOREIGN KEY (staff_verify_id)
         REFERENCES public.verifications (id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.staff_verifications
     ADD FOREIGN KEY (verified_staff_id)
         REFERENCES public.staff (staff_id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.job_seekers
     ADD FOREIGN KEY (email_verify_id)
         REFERENCES public.email_verifications (email_verify_id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.companies
     ADD FOREIGN KEY (staff_verify_id)
         REFERENCES public.staff_verifications (staff_verify_id)
-    NOT VALID;
+        NOT VALID;
 
 
 ALTER TABLE public.companies
     ADD FOREIGN KEY (email_verify_id)
         REFERENCES public.email_verifications (email_verify_id)
-    NOT VALID;
+        NOT VALID;
+
+INSERT INTO "public"."job_categories" (title,description) VALUES('Engineering','Descriptions');
+INSERT INTO "public"."job_categories" (title,description) VALUES('Advertising','Descriptions');
+
+INSERT INTO "public"."jobs" (job_category_id,job_name,job_description) VALUES(1,'Software Developer','computer');
+INSERT INTO "public"."jobs" (job_category_id,job_name,job_description) VALUES(2,'Advertise','advertise');
 
 --
 -- PostgreSQL database dump complete

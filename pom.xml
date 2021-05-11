@@ -12,7 +12,7 @@
 	<artifactId>hrms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hrms</name>
-	<description>human_resource_managment_system</description>
+	<description>human_resource_management_system</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

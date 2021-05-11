@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE public.roles
 (
     id        integer           NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    role_name character varying NOT NULL,
+    role_name character varying NOT NULL UNIQUE ,
     PRIMARY KEY (id)
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE public.users
 (
     id        integer               NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
     role_id   integer               NOT NULL,
-    email     character varying     NOT NULL,
+    email     character varying     NOT NULL UNIQUE ,
     pass      character varying(60) NOT NULL,
     is_active boolean               NOT NULL,
     PRIMARY KEY (id)
@@ -52,7 +52,7 @@ CREATE TABLE public.job_seekers
 (
     job_seeker_id   integer               NOT NULL,
     email_verify_id integer               NOT NULL,
-    national_id     character varying(11) NOT NULL,
+    national_id     character varying(11) NOT NULL UNIQUE ,
     gender          "char",
     PRIMARY KEY (job_seeker_id)
 );
@@ -70,7 +70,7 @@ CREATE TABLE public.companies
     company_id      integer               NOT NULL,
     staff_verify_id integer               NOT NULL,
     email_verify_id integer               NOT NULL,
-    company_name    character varying(60) NOT NULL,
+    company_name    character varying(60) NOT NULL UNIQUE ,
     phone           character varying(20) NOT NULL,
     website         character varying(60) NOT NULL,
     PRIMARY KEY (company_id)

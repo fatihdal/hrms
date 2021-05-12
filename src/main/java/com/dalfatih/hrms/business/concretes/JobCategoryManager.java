@@ -21,7 +21,6 @@ public class JobCategoryManager implements JobCategoryService {
     private final ModelMapper modelMapper = new ModelMapper();
     private final JobCategoryRepository jobCategoryRepository;
 
-
     @Override
     public List<JobCategoryDTO> getAll() {
         List<JobCategory> jobCategories = jobCategoryRepository.findAll();

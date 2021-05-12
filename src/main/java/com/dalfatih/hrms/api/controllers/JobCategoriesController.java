@@ -2,7 +2,6 @@ package com.dalfatih.hrms.api.controllers;
 
 import com.dalfatih.hrms.business.abstracts.JobCategoryService;
 import com.dalfatih.hrms.dto.JobCategoryDTO;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api/jobcategories")
 @Data
 public class JobCategoriesController {
-
 
     private JobCategoryService jobCategoryService;
 

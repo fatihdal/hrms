@@ -109,7 +109,7 @@ CREATE TABLE public.jobs
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
     job_category_id integer NOT NULL,
-    job_name character varying(20) NOT NULL UNIQUE,
+    job_title character varying(20) NOT NULL UNIQUE,
     job_description character varying(50) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -117,7 +117,7 @@ CREATE TABLE public.jobs
 CREATE TABLE public.job_categories
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    title character varying(20) NOT NULL UNIQUE ,
+    category_title character varying(20) NOT NULL UNIQUE ,
     description character varying(50) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -187,11 +187,16 @@ ALTER TABLE public.companies
         REFERENCES public.email_verifications (email_verify_id)
         NOT VALID;
 
+ALTER TABLE public.jobs
+    ADD FOREIGN KEY (id)
+        REFERENCES public.job_categories (id)
+        NOT VALID;
+
 INSERT INTO "public"."job_categories" (title,description) VALUES('Engineering','Descriptions');
 INSERT INTO "public"."job_categories" (title,description) VALUES('Advertising','Descriptions');
 
-INSERT INTO "public"."jobs" (job_category_id,job_name,job_description) VALUES(1,'Software Developer','computer');
-INSERT INTO "public"."jobs" (job_category_id,job_name,job_description) VALUES(2,'Advertise','advertise');
+INSERT INTO "public"."jobs" (job_category_id,job_title,job_description) VALUES(1,'Software Developer','computer');
+INSERT INTO "public"."jobs" (job_category_id,job_title,job_description) VALUES(2,'Advertise','advertise');
 
 --
 -- PostgreSQL database dump complete

@@ -5,20 +5,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "job_categories")
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "job_categories")
 public class JobCategory {
 
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
     @Column(name = "title", nullable = false, unique = true)
-    String title;
+    private String categoryTitle;
 
     @Column(name = "description", nullable = false)
-    String description;
+    private String description;
 }

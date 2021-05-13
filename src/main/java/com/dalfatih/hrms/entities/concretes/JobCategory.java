@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class JobCategory {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "job_category_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

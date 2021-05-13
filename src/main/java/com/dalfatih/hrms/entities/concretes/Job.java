@@ -14,13 +14,13 @@ import javax.persistence.*;
 public class Job {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "job_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_category_id", foreignKey = @ForeignKey(name = "fk_job_category_id")/*,referencedColumnName = "id"*/)
-    private JobCategory jobCategoryId;
+    @JoinColumn(name = "job_category_id", foreignKey = @ForeignKey(name = "fk_job_category_id"))
+    private JobCategory jobCategory;
 
     @Column(name = "job_title", nullable = false, unique = true)
     private String jobTitle;

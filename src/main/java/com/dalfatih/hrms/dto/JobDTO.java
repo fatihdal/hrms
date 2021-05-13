@@ -1,6 +1,5 @@
 package com.dalfatih.hrms.dto;
 
-import com.dalfatih.hrms.entities.concretes.JobCategory;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -11,9 +10,9 @@ import javax.validation.constraints.NotNull;
 @RequiredArgsConstructor
 public class JobDTO {
 
-    private int id;
+    private Long id;
 
-    private JobCategory jobCategory;
+    private Long jobCategoryId;
 
     @NotNull(message = "Title must not be empty")
     @Length(min = 3, max = 60, message = "Title length must be between 3 and 60")

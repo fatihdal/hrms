@@ -1,30 +1,29 @@
 package com.dalfatih.hrms.entities.concretes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.dalfatih.hrms.entities.abstracts.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "jobs")
-public class Job {
+public class Job extends BaseEntity {
 
-    @Id
-    @Column(name = "job_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_category_id", foreignKey = @ForeignKey(name = "fk_job_category_id"))
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "job_categories_id"/*, foreignKey = @ForeignKey(name = "fk_job_categories_id")*/)
+    @NonNull
     private JobCategory jobCategory;
 
     @Column(name = "job_title", nullable = false, unique = true)
+    @NonNull
     private String jobTitle;
 
     @Column(name = "job_description")
+    @NonNull
     private String jobDescription;
 }

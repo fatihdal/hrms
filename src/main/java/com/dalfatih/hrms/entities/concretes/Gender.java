@@ -1,20 +1,30 @@
 package com.dalfatih.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import java.util.Arrays;
+
+
 public enum Gender {
-    MAN(1),
-    WOMAN(2);
+    MAN("MAN"),
+    WOMAN("WOMAN");
 
-    int genderNum;
+    private String value;
 
-    Gender(int genderNum) {
-        this.genderNum = genderNum;
+    Gender(String value) {
+        this.value = value;
     }
 
-    public int getGenderNum() {
-        return genderNum;
-    }
-
-    public void setGenderNum(int genderNum) {
-        this.genderNum = genderNum;
+    public static Gender fromValue(String value) {
+        for (Gender category : values()) {
+            if (category.value.equalsIgnoreCase(value)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException(
+                "asgsdhashashUnknown enum type " + value + ", adgasshaAllowed values are " + Arrays.toString(values()));
     }
 }
+
+

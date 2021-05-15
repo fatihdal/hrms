@@ -4,6 +4,7 @@ import com.dalfatih.hrms.entities.concretes.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 
 @Data
@@ -20,6 +21,7 @@ public abstract class User extends BaseEntity {
 
     @Column(name = "user_email", unique = true)
     @NonNull
+    @Email
     private String email;
 
     @Column(name = "pass", nullable = false)

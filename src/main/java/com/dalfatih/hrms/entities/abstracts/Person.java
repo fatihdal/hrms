@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
@@ -27,7 +29,8 @@ public class Person extends User {
     private String lastName;
 
     @Column(name = "gender")
-    private Enum<Gender> gender;
+    @Enumerated(EnumType.ORDINAL)
+    private Gender gender;
 
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)

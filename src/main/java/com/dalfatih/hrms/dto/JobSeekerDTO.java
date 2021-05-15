@@ -19,7 +19,7 @@ public class JobSeekerDTO {
     private String email;
     private String pass;
     private String nationalId;
-    private Enum<Gender> gender;
+    private Gender gender;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime dateOfBirth;

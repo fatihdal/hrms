@@ -23,7 +23,7 @@ public class AppStart implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         for (int a = 1; a < 5; a++) {
             JobCategory jobCategory = new JobCategory("Category" + a, "description of " + "category" + a);

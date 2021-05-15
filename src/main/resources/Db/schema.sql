@@ -1,6 +1,3 @@
---
--- PostgreSQL database dump
---
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -188,16 +185,9 @@ ALTER TABLE public.companies
         NOT VALID;
 
 ALTER TABLE public.jobs
-    ADD FOREIGN KEY (id)
+    ADD FOREIGN KEY (job_category_id)
         REFERENCES public.job_categories (id)
         NOT VALID;
-
-INSERT INTO "public"."job_categories" (title,description) VALUES('Engineering','Descriptions');
-INSERT INTO "public"."job_categories" (title,description) VALUES('Advertising','Descriptions');
-
-INSERT INTO "public"."jobs" (job_category_id,job_title,job_description) VALUES(1,'Software Developer','computer');
-INSERT INTO "public"."jobs" (job_category_id,job_title,job_description) VALUES(2,'Advertise','advertise');
-
 --
 -- PostgreSQL database dump complete
 --

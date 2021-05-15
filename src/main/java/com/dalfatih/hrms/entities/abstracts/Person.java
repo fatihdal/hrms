@@ -8,7 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 //@Entity
 @MappedSuperclass
 //@Table(name = "persons")
-public class Person extends User {
+public abstract class Person extends User {
 
     @Column(name = "first_name")
     @NonNull
@@ -29,11 +29,11 @@ public class Person extends User {
     private String lastName;
 
     @Column(name = "gender")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
 }

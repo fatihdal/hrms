@@ -20,6 +20,6 @@ public class JobSeeker extends Person {
 
     private Long emailVerifyId;
 
-    @Column(name = "national_id")
+    @Column(name = "national_id",unique = true)
     private String nationalId;
 }

@@ -15,7 +15,7 @@ public class Job extends BaseEntity {
 
 
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "job_categories_id"/*, foreignKey = @ForeignKey(name = "fk_job_categories_id")*/)
+    @JoinColumn(name = "job_category_id"/*, foreignKey = @ForeignKey(name = "fk_job_categories_id")*/)
     @NonNull
     private JobCategory jobCategory;
 

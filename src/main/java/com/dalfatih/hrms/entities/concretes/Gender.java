@@ -1,8 +1,5 @@
 package com.dalfatih.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.Arrays;
 
 
@@ -23,7 +20,7 @@ public enum Gender {
             }
         }
         throw new IllegalArgumentException(
-                "asgsdhashashUnknown enum type " + value + ", adgasshaAllowed values are " + Arrays.toString(values()));
+                "Unknown enum type " + value + ", Allowed values are " + Arrays.toString(values()));
     }
 }
 

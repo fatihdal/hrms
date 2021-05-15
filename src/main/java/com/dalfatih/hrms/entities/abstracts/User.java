@@ -19,7 +19,7 @@ public abstract class User extends BaseEntity {
     @NonNull
     private Role roleId;
 
-    @Column(name = "user_email", unique = true)
+    @Column(name = "user_email", nullable = false,unique = true)
     @NonNull
     @Email
     private String email;
@@ -29,5 +29,6 @@ public abstract class User extends BaseEntity {
     private String pass;
 
     @Column(name = "is_active")
+    @NonNull
     private boolean isActive;
 }

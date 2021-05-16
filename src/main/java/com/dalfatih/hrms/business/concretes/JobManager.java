@@ -24,7 +24,6 @@ public class JobManager implements JobService {
     private final JobRepository jobRepository;
     private final JobCategoryRepository jobCategoryRepository;
 
-
     @Override
     public Job addJob(JobDTO jobDTO) {
         JobCategory jobCategory = jobCategoryRepository.getOne(jobDTO.getJobCategoryId());
@@ -51,5 +50,23 @@ public class JobManager implements JobService {
         logger.info("All jobs are listed");
 
         return jobDTOs;
+    }
+
+    @Override
+    public Job getById(Long jobId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Job delete(Long jobId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public List<JobDTO> filterByTitleOrDescription(String keyword) {
+        //TODO
+        return null;
     }
 }

@@ -31,4 +31,5 @@ public class JobCategoryManager implements JobCategoryService {
 
         return jobCategoryDTOs;
     }
+
 }

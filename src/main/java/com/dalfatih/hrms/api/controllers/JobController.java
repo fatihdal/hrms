@@ -31,7 +31,7 @@ public class JobController {
         return new ResponseEntity<CreateObjectResponse>(createObjectResponse, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getall")
+    @RequestMapping(method = RequestMethod.GET, value = "/jobs")
     public List<JobDTO> getAll() {
         return this.jobService.getAll();
     }

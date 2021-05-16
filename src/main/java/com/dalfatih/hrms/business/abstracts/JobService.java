@@ -10,4 +10,10 @@ public interface JobService {
     Job addJob(JobDTO jobDTO);
 
     List<JobDTO> getAll();
+
+    Job getById(Long jobId);
+
+    Job delete(Long jobId);
+
+    List<JobDTO> filterByTitleOrDescription(String keyword);
 }

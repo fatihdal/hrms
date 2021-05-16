@@ -27,7 +27,7 @@ public class JobSeekerDTO {
     @Size(min = 3, max = 25, message = "Last name length must be between 3 and 25")
     private String lastName;
 
-    //@NotEmpty(message = "Email must not be empty")
+    @NotEmpty(message = "Email must not be empty")
     @Email
     private String email;
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/jobcategories")
+@RequestMapping("/api/jobcategory")
 @Data
 public class JobCategoriesController {
 
@@ -22,7 +22,7 @@ public class JobCategoriesController {
         this.jobCategoryService = jobCategoryService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getall")
+    @RequestMapping(method = RequestMethod.GET, value = "/categories")
     public List<JobCategoryDTO> getAll() {
         return this.jobCategoryService.getAll();
     }

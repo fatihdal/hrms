@@ -3,7 +3,9 @@ package com.dalfatih.hrms.business.abstracts;
 import com.dalfatih.hrms.dto.JobSeekerDTO;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 
+import java.sql.SQLException;
+
 public interface JobSeekerService {
 
-    JobSeeker addJobSeeker(JobSeekerDTO jobSeekerDTO);
+    JobSeeker addJobSeeker(JobSeekerDTO jobSeekerDTO) throws SQLException;
 }

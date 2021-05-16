@@ -6,13 +6,14 @@ import com.dalfatih.hrms.dataAccess.abstracts.JobCategoryRepository;
 import com.dalfatih.hrms.dataAccess.abstracts.JobRepository;
 import com.dalfatih.hrms.dataAccess.abstracts.JobSeekerRepository;
 import com.dalfatih.hrms.dto.JobSeekerDTO;
-import com.dalfatih.hrms.entities.concretes.Job;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class JobSeekerManager implements JobSeekerService {
     private final JobSeekerRepository jobSeekerRepository;
 
     @Override
-    public JobSeeker addJobSeeker(JobSeekerDTO jobSeekerDTO) {
+    public JobSeeker addJobSeeker(JobSeekerDTO jobSeekerDTO) throws SQLException {
         JobSeeker jobSeeker = new JobSeeker();
         jobSeeker.setFirstName(jobSeekerDTO.getFirstName());
         jobSeeker.setLastName(jobSeekerDTO.getLastName());
@@ -35,27 +36,14 @@ public class JobSeekerManager implements JobSeekerService {
         jobSeeker.setEmail(jobSeekerDTO.getEmail());
         jobSeeker.setPass(jobSeekerDTO.getPass());
         jobSeeker.setGender(jobSeekerDTO.getGender());
-        final JobSeeker jobSeekerDb = jobSeekerRepository.save(jobSeeker);
-        jobSeekerDTO.setId(jobSeekerDb.getId());
-
-        logger.info("'" + jobSeekerDTO + "' is created");
 
         if (this.mernisServiceAdapter.checkIfRealPerson(jobSeeker)) {
-           jobSeekerRepository.save(jobSeeker);
-        } else logger.warn("no");
-       /*if(jobSeekerCheckService.(jobSeeker)) {
-           logger.warn("yes");
-       }*/
-
-
-
-/*
-        final Job jobDb = jobRepository.save(job);
-        jobDTO.setId(jobDb.getId());
-
-        logger.info("'" + jobDTO + "' is created");*/
-
-        return jobSeeker;
-
+            final JobSeeker jobSeekerDb = jobSeekerRepository.save(jobSeeker);
+            jobSeekerDTO.setId(jobSeekerDb.getId());
+            logger.info("'" + jobSeekerDTO + "' is created");
+            return jobSeekerDb;
+        } else {
+            throw new RuntimeException("kontrol et");
+        }
     }
 }

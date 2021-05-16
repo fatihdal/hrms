@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 //@AllArgsConstructor
 //@Entity
 @MappedSuperclass
@@ -21,11 +21,11 @@ import java.time.LocalDate;
 public abstract class Person extends User {
 
     @Column(name = "first_name")
-    @NonNull
+    //@NonNull
     private String firstName;
 
     @Column(name = "last_name")
-    @NonNull
+    //@NonNull
     private String lastName;
 
     @Column(name = "gender")

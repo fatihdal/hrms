@@ -1,6 +1,7 @@
 package com.dalfatih.hrms.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class JobCategoryDTO {
 
    private int id;

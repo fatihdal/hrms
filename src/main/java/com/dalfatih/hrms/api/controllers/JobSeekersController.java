@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 
 @Data
 @RestController
@@ -23,9 +24,13 @@ public class JobSeekersController {
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/jobseeker")
-    public ResponseEntity<CreateObjectResponse> addJobSeeker(@Valid @RequestBody JobSeekerDTO jobSeekerDTO) {
+    public ResponseEntity<CreateObjectResponse> addJobSeeker(@Valid @RequestBody JobSeekerDTO jobSeekerDTO) throws Exception {
+        try {
+            createObjectResponse.setId(jobSeekerService.addJobSeeker(jobSeekerDTO).getId());
+            return new ResponseEntity<CreateObjectResponse>(createObjectResponse, HttpStatus.CREATED);
+        } catch (SQLException ex) {
+            throw new SQLException(ex);
+        }
 
-        createObjectResponse.setId(jobSeekerService.addJobSeeker(jobSeekerDTO).getId());
-        return new ResponseEntity<CreateObjectResponse>(createObjectResponse, HttpStatus.CREATED);
     }
 }

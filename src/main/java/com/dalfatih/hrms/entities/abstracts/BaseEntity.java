@@ -7,8 +7,6 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Data
-@RequiredArgsConstructor
-//@NoArgsConstructor
 public abstract class BaseEntity {
 
     @Id

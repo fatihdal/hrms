@@ -36,7 +36,7 @@ public class JobManager implements JobService {
         final Job jobDb = jobRepository.save(job);
         jobDTO.setId(jobDb.getId());
 
-        logger.info("'" + jobDTO + "' is created");
+        logger.info(job + "' is created");
 
         return job;
     }
@@ -53,9 +53,17 @@ public class JobManager implements JobService {
     }
 
     @Override
-    public Job getById(Long jobId) {
-        //TODO
-        return null;
+    public JobDTO getById(Long jobId) {
+        Job job = jobRepository.getOne(jobId);
+        JobDTO jobDto = new JobDTO();
+        jobDto.setId(job.getId());
+        jobDto.setJobTitle(job.getJobTitle());
+        jobDto.setJobDescription(job.getJobDescription());
+        jobDto.setJobCategoryId(job.getJobCategory().getId());
+
+        logger.info("Fetched job : " + job + "");
+
+        return jobDto;
     }
 
     @Override

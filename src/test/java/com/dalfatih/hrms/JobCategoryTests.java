@@ -20,7 +20,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,7 +33,6 @@ import static org.hamcrest.Matchers.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class JobCategoryTests {
 
-    private final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
     private final ObjectMapper jsonMapper = new ObjectMapper().findAndRegisterModules()
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
@@ -54,39 +52,48 @@ public class JobCategoryTests {
         createJobCategory("Cateogry 3", "Description of Cateogry 3");
 
         URI urlOfGetAll = new URI(createURLWithPort("/jobcategory/categories"));
-        ResponseEntity<String> responseEntity =
+        ResponseEntity<String> listAllCategoryResponse =
                 this.testRestTemplate.getForEntity(urlOfGetAll, String.class);
 
-        String response = responseEntity.getBody();
+        assertThat(listAllCategoryResponse.getStatusCode(), is(equalTo(HttpStatus.OK)));
+
+        String response = listAllCategoryResponse.getBody();
 
         List<JobCategoryDTO> actual = Arrays.asList(jsonMapper.readValue(response, JobCategoryDTO[].class));
         System.out.println(actual);
 
         assertThat(
-                actual, hasItems(
-                        new JobCategoryDTO(1, "Cateogry 1", "Description of Cateogry 1"),
-                        new JobCategoryDTO(2, "Cateogry 2", "Description of Cateogry 2"),
+                actual, hasItem(
+                        new JobCategoryDTO(1, "Cateogry 1", "Description of Cateogry 1")
+
+                ));
+        assertThat(
+                actual, hasItem(
+                        new JobCategoryDTO(2, "Cateogry 2", "Description of Cateogry 2")
+                ));
+        assertThat(
+                actual, hasItem(
+
                         new JobCategoryDTO(3, "Cateogry 3", "Description of Cateogry 3")
                 ));
-        assertThat(responseEntity.getStatusCode(), is(equalTo(HttpStatus.OK)));
         assertThat(actual, is(hasSize(3)));
     }
 
     @Test
     public void shouldNotFindJobCategoryToList() throws URISyntaxException, JsonProcessingException {
         URI urlOfGetAll = new URI(createURLWithPort("/jobcategory/categories"));
-        ResponseEntity<String> responseEntity =
+        ResponseEntity<String> listAllCategoryResponse =
                 this.testRestTemplate.getForEntity(urlOfGetAll, String.class);
 
-        String response = responseEntity.getBody();
+        String response = listAllCategoryResponse.getBody();
 
         List<JobCategoryDTO> actual = Arrays.asList(jsonMapper.readValue(response, JobCategoryDTO[].class));
 
-        assertThat(responseEntity.getStatusCode(), is(equalTo(HttpStatus.OK)));
+        assertThat(listAllCategoryResponse.getStatusCode(), is(equalTo(HttpStatus.OK)));
         assertThat(actual, is(hasSize(0)));
     }
 
-    public void createJobCategory(String title, String description) throws URISyntaxException {
+    public void createJobCategory(String title, String description) {
         JobCategory jobCategory = new JobCategory(title, description);
         jobCategoryRepository.save(jobCategory);
     }

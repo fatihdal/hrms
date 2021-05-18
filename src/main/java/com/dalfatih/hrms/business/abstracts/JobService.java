@@ -11,7 +11,7 @@ public interface JobService {
 
     List<JobDTO> getAll();
 
-    Job getById(Long jobId);
+    JobDTO getById(Long jobId);
 
     Job delete(Long jobId);
 

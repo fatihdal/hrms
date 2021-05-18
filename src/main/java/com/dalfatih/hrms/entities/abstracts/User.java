@@ -16,16 +16,13 @@ public abstract class User extends BaseEntity {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_id"))
-    //@NonNull
     private Role roleId;
 
     @Column(name = "user_email", unique = true, length = 45)
-   // @NonNull
     @Email
     private String email;
 
     @Column(name = "pass"/*, nullable = false*/)
-    //@NonNull
     private String pass;
 
     @Column(name = "is_active")

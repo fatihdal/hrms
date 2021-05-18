@@ -1,17 +1,15 @@
 package com.dalfatih.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Arrays;
 
-
+@AllArgsConstructor
 public enum Gender {
     MAN("MAN"),
     WOMAN("WOMAN");
 
     private String value;
-
-    Gender(String value) {
-        this.value = value;
-    }
 
     public static Gender fromValue(String value) {
         for (Gender category : values()) {
@@ -23,5 +21,3 @@ public enum Gender {
                 "Unknown enum type " + value + ", Allowed values are " + Arrays.toString(values()));
     }
 }
-
-

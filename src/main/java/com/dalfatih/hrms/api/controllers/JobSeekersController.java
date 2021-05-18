@@ -17,7 +17,7 @@ import java.util.List;
 
 @Data
 @RestController
-@RequestMapping("/api/jobseekers")
+@RequestMapping("/hrms/jobseekers")
 public class JobSeekersController {
 
     private final JobSeekerService jobSeekerService;

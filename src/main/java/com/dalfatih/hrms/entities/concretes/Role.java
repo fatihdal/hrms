@@ -9,13 +9,12 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-//@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "roles")
 public class Role extends BaseEntity {
 
     @Column(name = "role_name")
-    //@NonNull
+    @NonNull
     private String roleName;
 }

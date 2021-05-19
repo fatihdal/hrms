@@ -1,7 +1,6 @@
 package com.dalfatih.hrms.entities.abstracts;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +11,5 @@ public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    //@NonNull
     private Long id;
 }

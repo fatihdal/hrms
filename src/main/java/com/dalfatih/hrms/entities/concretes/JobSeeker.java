@@ -1,17 +1,14 @@
 package com.dalfatih.hrms.entities.concretes;
 
 import com.dalfatih.hrms.entities.abstracts.Person;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Entity
@@ -20,6 +17,6 @@ public class JobSeeker extends Person {
 
     private Long emailVerifyId;
 
-    @Column(name = "national_id",unique = true)
+    @Column(name = "national_id", unique = true)
     private String nationalId;
 }

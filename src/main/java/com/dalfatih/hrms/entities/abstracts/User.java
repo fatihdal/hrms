@@ -15,8 +15,8 @@ import javax.validation.constraints.Email;
 public abstract class User extends BaseEntity {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_id"))
-    private Role roleId;
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @Column(name = "user_email", unique = true, length = 45)
     @Email

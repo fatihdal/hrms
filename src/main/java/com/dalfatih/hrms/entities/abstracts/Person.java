@@ -26,8 +26,7 @@ public abstract class Person extends User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-
+    @Column(name = "date_of_birth")
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDate dateOfBirth;
-
 }

@@ -1,4 +1,3 @@
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -30,164 +29,117 @@ DROP TABLE IF EXISTS roles;
 
 CREATE TABLE public.roles
 (
-    id        integer           NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    role_name character varying NOT NULL UNIQUE,
-    PRIMARY KEY (id)
+    id        INT GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    role_name CHARACTER VARYING NOT NULL UNIQUE,
+    CONSTRAINT pk_roles PRIMARY KEY (id)
 );
 
 CREATE TABLE public.users
 (
-    id        integer               NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    role_id   integer               NOT NULL,
-    email     character varying     NOT NULL UNIQUE,
-    pass      character varying(60) NOT NULL,
-    is_active boolean               NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE public.job_seekers
-(
-    job_seeker_id   integer               NOT NULL,
-    email_verify_id integer               NOT NULL,
-    national_id     character varying(11) NOT NULL UNIQUE,
-    gender          "char",
-    PRIMARY KEY (job_seeker_id)
+    id         INT GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    user_email CHARACTER VARYING     NOT NULL UNIQUE,
+    role_id    INT                   NOT NULL,
+    pass       CHARACTER VARYING(60) NOT NULL,
+    is_active  BOOLEAN               NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
 CREATE TABLE public.persons
 (
-    person_id  integer               NOT NULL,
-    first_name character varying(20) NOT NULL,
-    last_name  character varying(30) NOT NULL,
-    PRIMARY KEY (person_id)
-);
-
-CREATE TABLE public.companies
-(
-    company_id      integer               NOT NULL,
-    staff_verify_id integer               NOT NULL,
-    email_verify_id integer               NOT NULL,
-    company_name    character varying(60) NOT NULL UNIQUE,
-    phone           character varying(20) NOT NULL,
-    website         character varying(60) NOT NULL,
-    PRIMARY KEY (company_id)
+    person_id     INT,
+    first_name    CHARACTER VARYING(20) NOT NULL,
+    last_name     CHARACTER VARYING(30) NOT NULL,
+    date_of_birth TIMESTAMP             NOT NULL,
+    gender        CHARACTER VARYING(5),
+    CONSTRAINT pk_persons PRIMARY KEY (person_id),
+    CONSTRAINT fk_person_id FOREIGN KEY (person_id)
+        REFERENCES public.users (id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE public.staff
 (
-    staff_id integer NOT NULL,
-    PRIMARY KEY (staff_id)
+    staff_id INT,
+    CONSTRAINT pk_staffs PRIMARY KEY (staff_id),
+    CONSTRAINT fk_staff_id FOREIGN KEY (staff_id)
+        REFERENCES public.persons (person_id)
+        ON DELETE CASCADE
 );
 
-CREATE TABLE public.email_verifications
+CREATE TABLE public.job_seekers
 (
-    email_verify_id   integer               NOT NULL,
-    verification_code character varying(60) NOT NULL,
-    code_date         date                  NOT NULL,
-    PRIMARY KEY (email_verify_id)
+    job_seeker_id   INT,
+    national_id     CHARACTER VARYING(11) NOT NULL UNIQUE,
+    email_verify_id INT                   NOT NULL,
+    CONSTRAINT pk_job_seekers PRIMARY KEY (job_seeker_id),
+    CONSTRAINT fk_job_seekers_users FOREIGN KEY (job_seeker_id)
+        REFERENCES public.persons (person_id)
+        ON DELETE CASCADE
 );
 
-CREATE TABLE public.staff_verifications
+CREATE TABLE public.companies
 (
-    staff_verify_id   integer NOT NULL,
-    verified_staff_id integer NOT NULL,
-    verify_date       date    NOT NULL,
-    PRIMARY KEY (staff_verify_id)
+    company_id      INT,
+    staff_verify_id INT                   NOT NULL,
+    email_verify_id INT                   NOT NULL,
+    company_name    character varying(60) NOT NULL UNIQUE,
+    phone           character varying(20) NOT NULL,
+    website         character varying(60) NOT NULL,
+    CONSTRAINT pk_companies PRIMARY KEY (company_id),
+    CONSTRAINT fk_company_id FOREIGN KEY (company_id)
+        REFERENCES public.users (id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE public.verifications
 (
-    id           integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    is_comfirmed "char"  NOT NULL,
-    PRIMARY KEY (id)
+    id           INT     NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    is_confirmed BOOLEAN NOT NULL,
+    CONSTRAINT pk_verifications PRIMARY KEY (id)
 );
 
-CREATE TABLE public.jobs
+CREATE TABLE public.staff_verifications
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    job_category_id integer NOT NULL,
-    job_title character varying(20) NOT NULL UNIQUE,
-    job_description character varying(50) NOT NULL,
-    PRIMARY KEY (id)
+    staff_verification_id INT,
+    verified_staff_id     INT  NOT NULL,
+    verify_date           DATE NOT NULL,
+    CONSTRAINT pk_staff_verifications PRIMARY KEY (staff_verification_id),
+    CONSTRAINT fk_staff_verification_id FOREIGN KEY (staff_verification_id)
+        REFERENCES public.verifications (id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE public.email_verifications
+(
+    email_verify_id   INT,
+    verification_code CHARACTER VARYING(60) NOT NULL UNIQUE,
+    code_date         DATE                  NOT NULL,
+    CONSTRAINT pk_email_verifications PRIMARY KEY (email_verify_id),
+    CONSTRAINT fk_email_verification_id FOREIGN KEY (email_verify_id)
+        REFERENCES public.verifications (id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE public.job_categories
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
-    category_title character varying(20) NOT NULL UNIQUE ,
-    description character varying(50) NOT NULL,
-    PRIMARY KEY (id)
+    id          INT                   NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    title       CHARACTER VARYING(20) NOT NULL UNIQUE,
+    description CHARACTER VARYING(50) NOT NULL,
+    CONSTRAINT pk_job_categories PRIMARY KEY (id)
 );
 
-ALTER TABLE public.persons
-    ADD FOREIGN KEY (person_id)
-        REFERENCES public.users (id)
-        NOT VALID;
-
-
-ALTER TABLE public.users
-    ADD FOREIGN KEY (role_id)
-        REFERENCES public.roles (id)
-        NOT VALID;
-
-
-ALTER TABLE public.companies
-    ADD FOREIGN KEY (company_id)
-        REFERENCES public.users (id)
-        NOT VALID;
-
-
-ALTER TABLE public.job_seekers
-    ADD FOREIGN KEY (job_seeker_id)
-        REFERENCES public.persons (person_id)
-        NOT VALID;
-
-
-ALTER TABLE public.staff
-    ADD FOREIGN KEY (staff_id)
-        REFERENCES public.persons (person_id)
-        NOT VALID;
-
-
-ALTER TABLE public.email_verifications
-    ADD FOREIGN KEY (email_verify_id)
-        REFERENCES public.verifications (id)
-        NOT VALID;
-
-
-ALTER TABLE public.staff_verifications
-    ADD FOREIGN KEY (staff_verify_id)
-        REFERENCES public.verifications (id)
-        NOT VALID;
-
-
-ALTER TABLE public.staff_verifications
-    ADD FOREIGN KEY (verified_staff_id)
-        REFERENCES public.staff (staff_id)
-        NOT VALID;
-
-
-ALTER TABLE public.job_seekers
-    ADD FOREIGN KEY (email_verify_id)
-        REFERENCES public.email_verifications (email_verify_id)
-        NOT VALID;
-
-
-ALTER TABLE public.companies
-    ADD FOREIGN KEY (staff_verify_id)
-        REFERENCES public.staff_verifications (staff_verify_id)
-        NOT VALID;
-
-
-ALTER TABLE public.companies
-    ADD FOREIGN KEY (email_verify_id)
-        REFERENCES public.email_verifications (email_verify_id)
-        NOT VALID;
-
-ALTER TABLE public.jobs
-    ADD FOREIGN KEY (job_category_id)
+CREATE TABLE public.jobs
+(
+    id              INT                   NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2444444 CACHE 1 ),
+    job_category_id INT                   NOT NULL,
+    job_title       CHARACTER VARYING(30) NOT NULL UNIQUE,
+    job_description CHARACTER VARYING(50) NOT NULL,
+    CONSTRAINT pk_jobs PRIMARY KEY (id),
+    CONSTRAINT fk_job_category_id FOREIGN KEY (job_category_id)
         REFERENCES public.job_categories (id)
-        NOT VALID;
+        ON DELETE CASCADE
+);
+
 --
 -- PostgreSQL database dump complete
 --

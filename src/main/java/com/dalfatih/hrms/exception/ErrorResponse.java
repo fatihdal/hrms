@@ -1,13 +1,12 @@
 package com.dalfatih.hrms.exception;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 @Data
-//@RequiredArgsConstructor
+@AllArgsConstructor
 public class ErrorResponse {
 
     @NonNull
@@ -18,5 +17,4 @@ public class ErrorResponse {
 
     @NonNull
     private List<String> details;
-
 }

@@ -91,11 +91,11 @@ VALUES ('7.userEmail1@example.com', true, '123456789', '1984/05/05', '7.User Fir
         '7.User Last Name', 'WOMAN', null, '12345678961', 3);
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
                                 email_verify_id, national_id, role_id)
-VALUES ('8.userEmail1@example.com', true, '123456789', '1984/05/05', '10.User First Name',
+VALUES ('8.userEmail1@example.com', true, '123456789', '1984/05/05', '8.User First Name',
         '8.User Last Name', 'MAN', null, '12345678932', 3);
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
                                 email_verify_id, national_id, role_id)
-VALUES ('9.userEmail1@example.com', true, '123456789', '1984/05/05', '10.User First Name',
+VALUES ('9.userEmail1@example.com', true, '123456789', '1984/05/05', '9.User First Name',
         '9.User Last Name', 'MAN', null, '12345678172', 3);
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
                                 email_verify_id, national_id, role_id)

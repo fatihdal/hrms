@@ -15,4 +15,25 @@
 > - Spring Web.
 > - Lombok.
 
-![exam](https://user-images.githubusercontent.com/10801236/117908112-9fe5fb80-b2e0-11eb-963d-89a2ce8a48ae.jpg)
+## Usage
+
+*Can be used with any rest client application*
+
+> #### To list all job categories
+> ```
+> GET
+> http://localhost:8080/hrms/jobcategories/categories
+> ``` 
+
+ 
+> #### To list all jobs
+>```
+>GET
+>http://localhost:8080/hrms/jobs/jobs
+>```
+
+>#### To list all job seekers
+>```
+>GET
+>http://localhost:8080/hrms/jobseekers/jobseekers
+>```

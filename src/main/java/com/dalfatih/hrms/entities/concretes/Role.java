@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "roles")
 public class Role extends BaseEntity {
 
-    @Column(name = "role_name")
     @NonNull
+    @Column(name = "role_name")
     private String roleName;
 }

@@ -9,11 +9,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
-
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 public abstract class Person extends User {
 
     @Column(name = "first_name")

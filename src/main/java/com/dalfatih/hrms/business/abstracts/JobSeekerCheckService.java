@@ -5,5 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface JobSeekerCheckService {
+
     boolean checkIfRealPerson(JobSeeker jobSeeker);
 }

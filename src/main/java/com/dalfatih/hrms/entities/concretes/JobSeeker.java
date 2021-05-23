@@ -6,17 +6,23 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @Entity
-@Table(name = "job_seekers")
+@Table(name = "job_seekers", uniqueConstraints =
+        {@UniqueConstraint(columnNames = "user_email", name = "uk_user_email"),
+                @UniqueConstraint(columnNames = "national_id", name = "uk_national_id")})
 public class JobSeeker extends Person {
 
+    @NonNull
     private Long emailVerifyId;
 
-    @Column(name = "national_id", unique = true)
+    @NonNull
+    @Column(name = "national_id")
     private String nationalId;
 }

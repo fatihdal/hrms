@@ -7,22 +7,23 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 public abstract class User extends BaseEntity {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Column(name = "user_email", unique = true, length = 45)
     @Email
+    @Column(name = "user_email", length = 45)
     private String email;
 
-    @Column(name = "pass"/*, nullable = false*/)
+    @Column(name = "pass")
     private String pass;
 
     @Column(name = "is_active")

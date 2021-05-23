@@ -1,11 +1,13 @@
 package com.dalfatih.hrms.entities.abstracts;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @MappedSuperclass
-@Data
 public abstract class BaseEntity {
 
     @Id

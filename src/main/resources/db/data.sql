@@ -52,52 +52,44 @@ VALUES (5, '3.job of category 5', 'Description of Job 3');
 insert into public.jobs (job_category_id, job_title, job_description)
 VALUES (5, '4.job of category 5', 'Description of Job 4');
 
-/*Create Roles*/
-insert into public.roles (role_name)
-VALUES ('Admin');
-insert into public.roles (role_name)
-VALUES ('Staff');
-insert into public.roles (role_name)
-VALUES ('User');
-
 /*Create Users*/
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('1.userEmail1@example.com', true, '123456789', '1984/05/05', '1.User First Name',
-        '1.User Last Name', 'MAN', null, '12345678945', 1);
+        '1.User Last Name', 'MAN', null, '12345678945', 'ADMIN');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('2.userEmail1@example.com', true, '123456789', '1984/05/05', '2.User First Name',
-        '2.User Last Name', 'WOMAN', null, '12345678998', 1);
+        '2.User Last Name', 'WOMAN', null, '12345678998', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('3.userEmail1@example.com', true, '123456789', '1984/05/05', '3.User First Name',
-        '3.User Last Name', 'WOMAN', null, '12345678978', 2);
+        '3.User Last Name', 'WOMAN', null, '12345678978', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('4.userEmail1@example.com', true, '123456789', '1984/05/05', '4.User First Name',
-        '4.User Last Name', 'WOMAN', null, '12345678947', 3);
+        '4.User Last Name', 'WOMAN', null, '12345678947', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('5.userEmail1@example.com', true, '123456789', '1984/05/05', '5.User First Name',
-        '5.User Last Name', 'WOMAN', null, '12345678996', 3);
+        '5.User Last Name', 'WOMAN', null, '12345678996', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('6.userEmail1@example.com', true, '123456789', '1984/05/05', '6.User First Name',
-        '6.User Last Name', 'WOMAN', null, '12347678975', 3);
+        '6.User Last Name', 'WOMAN', null, '12347678975', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('7.userEmail1@example.com', true, '123456789', '1984/05/05', '7.User First Name',
-        '7.User Last Name', 'WOMAN', null, '12345678961', 3);
+        '7.User Last Name', 'WOMAN', null, '12345678961', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('8.userEmail1@example.com', true, '123456789', '1984/05/05', '8.User First Name',
-        '8.User Last Name', 'MAN', null, '12345678932', 3);
+        '8.User Last Name', 'MAN', null, '12345678932', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('9.userEmail1@example.com', true, '123456789', '1984/05/05', '9.User First Name',
-        '9.User Last Name', 'MAN', null, '12345678172', 3);
+        '9.User Last Name', 'MAN', null, '12345678172', 'USER');
 insert into public.job_seekers (user_email, is_active, pass, date_of_birth, first_name, last_name, gender,
-                                email_verify_id, national_id, role_id)
+                                email_verify_id, national_id, user_role)
 VALUES ('10.userEmail1@example.com', true, '123456789', '1984/05/05', '10.User First Name',
-        '10.User Last Name', 'MAN', null, '12345678975', 3);
+        '10.User Last Name', 'MAN', null, '12345678975', 'USER');

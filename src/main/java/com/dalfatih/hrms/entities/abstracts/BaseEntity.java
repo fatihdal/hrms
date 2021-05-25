@@ -1,7 +1,6 @@
 package com.dalfatih.hrms.entities.abstracts;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 

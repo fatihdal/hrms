@@ -1,4 +1,4 @@
-package com.dalfatih.hrms.adapters;
+package com.dalfatih.hrms.core.utilities.adapters;
 
 import com.dalfatih.hrms.business.abstracts.JobSeekerCheckService;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
@@ -7,8 +7,8 @@ import tr.gov.nvi.tckimlik.ws.KPSPublic;
 
 import java.util.Locale;
 
-@Service
-public class MernisServiceAdapter implements JobSeekerCheckService {
+@Service("")
+public class MernisCheckServiceAdapter implements JobSeekerCheckService {
     @Override
     public boolean checkIfRealPerson(JobSeeker jobSeeker) {
         KPSPublic service = new KPSPublic();

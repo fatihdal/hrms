@@ -7,11 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "job_seekers", uniqueConstraints =
@@ -19,10 +19,10 @@ import javax.persistence.UniqueConstraint;
                 @UniqueConstraint(columnNames = "national_id", name = "uk_national_id")})
 public class JobSeeker extends Person {
 
-    @NonNull
     private Long emailVerifyId;
 
-    @NonNull
+    @NotNull(message = "National id must not be empty")
+    @Size(min = 11, max = 11, message = "National id length must be 11 characters")
     @Column(name = "national_id")
     private String nationalId;
 }

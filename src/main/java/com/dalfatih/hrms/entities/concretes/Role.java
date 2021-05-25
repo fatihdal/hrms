@@ -1,20 +1,24 @@
 package com.dalfatih.hrms.entities.concretes;
 
-import com.dalfatih.hrms.entities.abstracts.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.Arrays;
 
-@Data
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@Entity
-@Table(name = "roles")
-public class Role extends BaseEntity {
+@AllArgsConstructor
+public enum Role {
 
-    @NonNull
-    @Column(name = "role_name")
-    private String roleName;
+    ADMIN("ADMIN"),
+    USER("USER");
+
+    private String value;
+
+    public static Role fromValue(String value) {
+        for (Role role : values()) {
+            if (role.value.equalsIgnoreCase(value)) {
+                return role;
+            }
+        }
+        throw new IllegalArgumentException(
+                "Unknown enum type " + value + ", Allowed values are " + Arrays.toString(values()));
+    }
 }

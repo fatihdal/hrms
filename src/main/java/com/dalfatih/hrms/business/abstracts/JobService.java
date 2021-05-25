@@ -1,19 +1,19 @@
 package com.dalfatih.hrms.business.abstracts;
 
-import com.dalfatih.hrms.dto.JobDTO;
+import com.dalfatih.hrms.core.utilities.results.DataResult;
 import com.dalfatih.hrms.entities.concretes.Job;
 
 import java.util.List;
 
 public interface JobService {
 
-    Job addJob(JobDTO jobDTO);
+    DataResult<Job> addJob(Job job);
 
-    List<JobDTO> getAll();
+    DataResult<List<Job>> getAll();
 
-    JobDTO getById(Long jobId);
+    DataResult<Job> getById(Long jobId);
 
-    Job delete(Long jobId);
+    DataResult<Job> delete(Long jobId);
 
-    List<JobDTO> filterByTitleOrDescription(String keyword);
+    DataResult<List<Job>> filterByTitleOrDescription(String keyword);
 }

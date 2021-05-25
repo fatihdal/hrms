@@ -1,7 +1,7 @@
 package com.dalfatih.hrms.api.controllers;
 
 import com.dalfatih.hrms.business.abstracts.JobCategoryService;
-import com.dalfatih.hrms.dto.JobCategoryDTO;
+import com.dalfatih.hrms.entities.concretes.JobCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +21,7 @@ public class JobCategoriesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/categories")
-    public List<JobCategoryDTO> getAll() {
+    public List<JobCategory> getAll() {
         return this.jobCategoryService.getAll();
     }
 }

@@ -1,12 +1,10 @@
-package com.dalfatih.hrms.entities.abstracts;
+package com.dalfatih.hrms.entities.concretes;
 
+import com.dalfatih.hrms.entities.abstracts.BaseEntity;
 import com.dalfatih.hrms.entities.concretes.Role;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,17 +15,19 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
+@Entity
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "users", uniqueConstraints =
+        {@UniqueConstraint(columnNames = "email", name = "uk_user_email")})
 public class User extends BaseEntity {
 
-    @Column(name = "user_role")
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Email
     @NotEmpty(message = "Email must not be empty")
-    @Column(name = "user_email", length = 45)
+    @Column(name = "email", length = 45)
     private String email;
 
     @NotNull(message = "Password must not be empty")
@@ -35,6 +35,13 @@ public class User extends BaseEntity {
     @Column(name = "pass")
     private String pass;
 
+    @Column(name = "email_verify_Id")
+    private Long emailVerifyId;
+
     @Column(name = "is_active")
     private boolean isActive;
+
+    @JoinColumn
+    @OneToOne
+    private JobSeeker jobSeeker;
 }

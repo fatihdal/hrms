@@ -39,7 +39,7 @@ VALUES ('1.userEmail1@example.com', true, '123456789', '1',
 /*Create Job Seeker*/
 
 insert into public.job_seekers (date_of_birth, first_name, last_name, gender,national_id, user_id)
-VALUES ('1984/05/05', 'DENEME', 'SOYADI', 'MAN', '123456789','1');
+VALUES ('2/10/1947', 'DENEME', 'SOYADI', 'MAN', '123456789','1');
        /*
        ('2.userEmail1@example.com', true, '123456789', '1984/05/05', '2.User First Name',
         '2.User Last Name', 'WOMAN', null, '12345678998', 'USER'),

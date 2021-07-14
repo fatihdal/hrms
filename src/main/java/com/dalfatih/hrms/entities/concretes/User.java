@@ -15,11 +15,12 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Embeddable
+/*@Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "users", uniqueConstraints =
-        {@UniqueConstraint(columnNames = "email", name = "uk_user_email")})
-public class User extends BaseEntity {
+        {@UniqueConstraint(columnNames = "email", name = "uk_user_email")})*/
+public class User {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
@@ -41,7 +42,10 @@ public class User extends BaseEntity {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @JoinColumn
-    @OneToOne
-    private JobSeeker jobSeeker;
+    @Column(name = "phone")
+    private String phone;
+
+  /*  @ManyToOne
+    @JoinColumn(name = "job_seeker_id")
+    private JobSeeker jobSeeker;*/
 }

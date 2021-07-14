@@ -29,34 +29,24 @@ VALUES (1, '1.job of category 1', 'Description of Job 1'),
        (5, '3.job of category 5', 'Description of Job 3'),
        (5, '4.job of category 5', 'Description of Job 4');
 
+/*Create Job Seeker*/
+
+insert into public.job_seekers (date_of_birth, first_name, last_name, gender,national_id,email, is_active, pass,email_verify_id,role,phone)
+VALUES ('10/6/1978', 'NESLIHAN', 'ZENGIN', 'WOMAN', '23480340824','1.userEmail1@example.com', true, '123456789', '1','USER',2562611);
+      /* ('3/8/1949', 'SADET', 'YILDIRIM', 'WOMAN', '17111553172'),
+       ('15/8/1987', 'GONUL', 'CETİN', 'WOMAN', '10499773538'),
+       ('23/4/1983', 'MURAT', 'GENC', 'MAN', '35995199842');*/
+
+/*Create Company*/
+
+insert into public.company (company_name,website,email, is_active, pass,email_verify_id,role,phone)
+VALUES ('Name of company 1', 'www.company1.com', 'mail@company1.com', true, '123456789','2', 'USER',2562692);
 
 /*Create User*/
 
-insert into public.users (email, is_active, pass,email_verify_id,role)
-VALUES ('1.userEmail1@example.com', true, '123456789', '1',
-        'user');
-
-/*Create Job Seeker*/
-
-insert into public.job_seekers (date_of_birth, first_name, last_name, gender,national_id, user_id)
-VALUES ('2/10/1947', 'DENEME', 'SOYADI', 'MAN', '123456789','1');
-       /*
-       ('2.userEmail1@example.com', true, '123456789', '1984/05/05', '2.User First Name',
-        '2.User Last Name', 'WOMAN', null, '12345678998', 'USER'),
-       ('3.userEmail1@example.com', true, '123456789', '1984/05/05', '3.User First Name',
-        '3.User Last Name', 'WOMAN', null, '12345678978', 'USER'),
-       ('4.userEmail1@example.com', true, '123456789', '1984/05/05', '4.User First Name',
-        '4.User Last Name', 'WOMAN', null, '12345678947', 'USER'),
-       ('5.userEmail1@example.com', true, '123456789', '1984/05/05', '5.User First Name',
-        '5.User Last Name', 'WOMAN', null, '12345678996', 'USER'),
-       ('6.userEmail1@example.com', true, '123456789', '1984/05/05', '6.User First Name',
-        '6.User Last Name', 'WOMAN', null, '12347678975', 'USER'),
-       ('7.userEmail1@example.com', true, '123456789', '1984/05/05', '7.User First Name',
-        '7.User Last Name', 'WOMAN', null, '12345678961', 'USER'),
-       ('8.userEmail1@example.com', true, '123456789', '1984/05/05', '8.User First Name',
-        '8.User Last Name', 'MAN', null, '12345678932', 'USER'),
-       ('9.userEmail1@example.com', true, '123456789', '1984/05/05', '9.User First Name',
-        '9.User Last Name', 'MAN', null, '12345678172', 'USER'),
-       ('10.userEmail1@example.com', true, '123456789', '1984/05/05', '10.User First Name',
-        '10.User Last Name', 'MAN', null, '12345678975', 'USER');
-       */
+/*insert into public.users (email, is_active, pass,email_verify_id,role,job_seeker_id)
+VALUES ('1.userEmail1@example.com', true, '123456789', '1','USER','1'),
+       ('2.userEmail1@example.com', true, '123456789', '2','USER','2'),
+       ('3.userEmail1@example.com', true, '123456789', '3','USER','3'),
+       ('4.userEmail1@example.com', true, '123456789', '4','USER','4');
+*/

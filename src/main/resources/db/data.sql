@@ -31,20 +31,21 @@ VALUES (1, '1.job of category 1', 'Description of Job 1'),
 
 /*Create Job Seeker*/
 
-insert into public.job_seekers (date_of_birth, first_name, last_name, gender,national_id,email, is_active, pass,email_verify_id,role,phone)
-VALUES ('10/6/1978', 'NESLIHAN', 'ZENGIN', 'WOMAN', '23480340824','1.userEmail1@example.com', true, '123456789', '1','USER',2562611);
+insert into public.job_seekers (date_of_birth, first_name, last_name, gender,national_id,email, enabled,locked ,password,email_verify_id,role,phone)
+VALUES ('10/6/1978', 'NESLIHAN', 'ZENGIN', 'WOMAN', '23480340824','1.userEmail1@example.com', true, true,'123456789', '1','USER',2562611),
+       ('3/8/1949','SADET', 'YILDIRIM', 'WOMAN', '17111553172','2.userEmail1@example.com', true, true,'123456789', '1','USER',2562611);
       /* ('3/8/1949', 'SADET', 'YILDIRIM', 'WOMAN', '17111553172'),
        ('15/8/1987', 'GONUL', 'CETİN', 'WOMAN', '10499773538'),
        ('23/4/1983', 'MURAT', 'GENC', 'MAN', '35995199842');*/
 
 /*Create Company*/
 
-insert into public.company (company_name,website,email, is_active, pass,email_verify_id,role,phone)
+insert into public.company (company_name,website,email, is_active, password,email_verify_id,role,phone)
 VALUES ('Name of company 1', 'www.company1.com', 'mail@company1.com', true, '123456789','2', 'USER',2562692);
 
 /*Create User*/
 
-/*insert into public.users (email, is_active, pass,email_verify_id,role,job_seeker_id)
+/*insert into public.users (email, is_active, password,email_verify_id,role,job_seeker_id)
 VALUES ('1.userEmail1@example.com', true, '123456789', '1','USER','1'),
        ('2.userEmail1@example.com', true, '123456789', '2','USER','2'),
        ('3.userEmail1@example.com', true, '123456789', '3','USER','3'),

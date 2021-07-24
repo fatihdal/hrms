@@ -1,14 +1,15 @@
 package com.dalfatih.hrms.core.utilities.adapters;
 
 import com.dalfatih.hrms.business.abstracts.JobSeekerCheckService;
+import com.dalfatih.hrms.dtos.JobSeekerDto;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 import org.springframework.stereotype.Service;
 
 @Service("jobSeekerCheckService")
 public class FakeMernisCheckServiceAdapter implements JobSeekerCheckService {
     @Override
-    public boolean checkIfRealPerson(JobSeeker jobSeeker) {
-        String identityNumber = jobSeeker.getNationalId();
+    public boolean checkIfRealPerson(JobSeekerDto jobSeekerDto) {
+        String identityNumber = jobSeekerDto.getNationalId();
 
         if (identityNumber.length() != 11 || identityNumber.charAt(0) == '0') {
             return false;

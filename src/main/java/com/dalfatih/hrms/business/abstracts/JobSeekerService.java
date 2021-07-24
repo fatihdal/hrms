@@ -1,6 +1,7 @@
 package com.dalfatih.hrms.business.abstracts;
 
 import com.dalfatih.hrms.core.utilities.results.DataResult;
+import com.dalfatih.hrms.dtos.JobSeekerDto;
 import com.dalfatih.hrms.entities.concretes.Gender;
 import com.dalfatih.hrms.entities.concretes.Job;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface JobSeekerService {
 
-    DataResult<JobSeeker> addJobSeeker(JobSeeker jobSeeker) throws SQLException;
+    DataResult<JobSeeker> addJobSeeker(JobSeekerDto jobSeekerDto) throws SQLException;
 
     DataResult<List<JobSeeker>> getAll();
 

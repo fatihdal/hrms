@@ -5,12 +5,15 @@ import com.dalfatih.hrms.business.abstracts.JobSeekerService;
 import com.dalfatih.hrms.core.utilities.results.DataResult;
 import com.dalfatih.hrms.core.utilities.results.SuccessDataResult;
 import com.dalfatih.hrms.dataAccess.abstracts.JobSeekerRepository;
+import com.dalfatih.hrms.dtos.JobSeekerDto;
 import com.dalfatih.hrms.entities.concretes.Gender;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 import com.dalfatih.hrms.exception.CitizenNotVerifiedException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,15 +25,17 @@ import java.util.List;
 @Transactional
 public class JobSeekerManager implements JobSeekerService {
 
+
+    private ModelMapper modelMapper = new ModelMapper();
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final JobSeekerCheckService jobSeekerCheckService; //Fake Mernis Check Service
     private final JobSeekerRepository jobSeekerRepository;
 
     @Override
-    public DataResult<JobSeeker> addJobSeeker(JobSeeker jobSeeker) {
+    public DataResult<JobSeeker> addJobSeeker(JobSeekerDto jobSeekerDto) {
 
-        if (!jobSeekerCheckService.checkIfRealPerson(jobSeeker)) throw new CitizenNotVerifiedException("");
-
+        if (!jobSeekerCheckService.checkIfRealPerson(jobSeekerDto)) throw new CitizenNotVerifiedException("");
+        JobSeeker jobSeeker = modelMapper.map(jobSeekerDto,JobSeeker.class);
         jobSeekerRepository.save(jobSeeker);
 
         logger.info(jobSeeker.getId() + " " + jobSeeker.getFirstName() + " " + jobSeeker.getLastName() + " is created");

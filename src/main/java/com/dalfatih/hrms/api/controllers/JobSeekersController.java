@@ -2,6 +2,7 @@ package com.dalfatih.hrms.api.controllers;
 
 import com.dalfatih.hrms.business.abstracts.JobSeekerService;
 import com.dalfatih.hrms.core.utilities.results.DataResult;
+import com.dalfatih.hrms.dtos.JobSeekerDto;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +25,9 @@ public class JobSeekersController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/jobseeker")
-    public DataResult<JobSeeker> addJobSeeker(@Valid @RequestBody JobSeeker jobSeeker) throws Exception {
+    public DataResult<JobSeeker> addJobSeeker(@Valid @RequestBody JobSeekerDto jobSeekerDto) throws Exception {
 
-        return this.jobSeekerService.addJobSeeker(jobSeeker);
+        return this.jobSeekerService.addJobSeeker(jobSeekerDto);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/jobseekers")

@@ -2,9 +2,10 @@ package com.dalfatih.hrms.entities.concretes;
 
 import com.dalfatih.hrms.entities.abstracts.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,8 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -70,17 +72,37 @@ public class JobSeeker extends BaseEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email_verify_Id")
-    private Long emailVerifyId;
+    /*@Column(name = "email_verify_Id")
+    private Long emailVerifyId;*/
 
     @Column(name = "locked")
-    private Boolean locked = false;
+    private Boolean locked = true;
 
     @Column(name = "enabled")
     private Boolean enabled = false;
 
     @Column(name = "phone")
     private String phone;
+
+    public JobSeeker (String firstName,
+                     String lastName,
+                     LocalDate dateOfBirth,
+                     String email,
+                      String nationalId,
+                     String password,
+                     Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.nationalId = nationalId;
+        this.password = password;
+        this.role = role;
+    }
+
+    public JobSeeker(String firstName, String lastName, LocalDate dateOfBirth, String nationalId, String pass, String phone) {
+        super();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -110,11 +132,11 @@ public class JobSeeker extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

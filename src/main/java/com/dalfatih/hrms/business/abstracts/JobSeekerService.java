@@ -3,16 +3,20 @@ package com.dalfatih.hrms.business.abstracts;
 import com.dalfatih.hrms.core.utilities.results.DataResult;
 import com.dalfatih.hrms.dtos.JobSeekerDto;
 import com.dalfatih.hrms.entities.concretes.Gender;
-import com.dalfatih.hrms.entities.concretes.Job;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface JobSeekerService {
+public interface JobSeekerService extends UserDetailsService {
 
     DataResult<JobSeeker> addJobSeeker(JobSeekerDto jobSeekerDto) throws SQLException;
+
+    String signUpJobSeeker(JobSeekerDto jobSeekerDto);
+
+    public int enableJobSeeker(String email);
 
     DataResult<List<JobSeeker>> getAll();
 

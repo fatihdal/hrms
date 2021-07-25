@@ -15,7 +15,7 @@ public class RegistrationController {
     private final RegistrationManager registrationManager;
 
     @RequestMapping(method = RequestMethod.POST,value = "/jobseeker")
-    public DataResult<String> register (@Valid @RequestBody JobSeekerDto jobSeekerDto)throws Exception{
+    public DataResult<String> register (@Valid @RequestBody JobSeekerDto jobSeekerDto)throws Exception{   //@Valid may change
         return registrationManager.register(jobSeekerDto);
     }
 

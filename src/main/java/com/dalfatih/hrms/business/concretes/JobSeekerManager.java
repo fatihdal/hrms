@@ -56,8 +56,8 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public String signUpJobSeeker(JobSeekerDto jobSeekerDto) {
         boolean userExists = jobSeekerRepository
-                .findByEmail(jobSeekerDto.getEmail())
-                .isPresent();
+                .findByEmail(jobSeekerDto.getEmail()).isPresent()
+                /**||jobSeekerRepository.findByNationalId(jobSeekerDto.getNationalId()).isPresent()*/;
 
         if (userExists) {
             // TODO check of attributes are the same and

@@ -1,5 +1,6 @@
 package com.dalfatih.hrms.dataAccess.abstracts;
 
+import com.dalfatih.hrms.core.utilities.results.SuccessResult;
 import com.dalfatih.hrms.entities.concretes.JobSeeker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,6 +15,10 @@ import java.util.Optional;
 public interface JobSeekerRepository extends JpaRepository<JobSeeker, Long> {
 
     Optional<JobSeeker> findByEmail(String email);
+
+    Optional<JobSeeker> findByNationalId(String nationalId);
+
+    Optional<JobSeeker>findByPhone(String phone);
 
     @Transactional
     @Modifying

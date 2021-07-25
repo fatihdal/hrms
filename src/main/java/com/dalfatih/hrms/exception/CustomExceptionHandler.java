@@ -73,4 +73,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         }
         return new ResponseEntity(error, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(IllegalStateException.class)
+    protected ResponseEntity<Object> handleMethodDateTimeParse(IllegalStateException ex, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        details.add(ex.getLocalizedMessage());
+        ErrorResponse error = new ErrorResponse(HttpStatus.CONFLICT, "Check email please", details);
+        return new ResponseEntity(error, HttpStatus.CONFLICT);
+    }
 }
